@@ -3,7 +3,7 @@ function Initialize()
     -- ------------------------ stay on desktop operation ----------------------- --
     if SKIN:GetVariable('StayOnDesktop') == '0' then
 
-        SKIN:Bang('[!Delay 100][!EnableMeasureGroup NUOL][!UpdateMeasure ACTIONLOAD][!CommandMeasure Measure_Focus "#CURRENTCONFIG#"][!Draggable 0][!ZPos 1]')
+        SKIN:Bang('[!Delay 100][!CommandMeasure ActionTimer "Execute 1"][!CommandMeasure Measure_Focus "#CURRENTCONFIG#"][!Draggable 0][!ZPos 1]')
 
     -- -------------------------------- Position -------------------------------- --
     local pos = SKIN:GetVariable('Position')

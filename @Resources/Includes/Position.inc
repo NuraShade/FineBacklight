@@ -17,7 +17,7 @@ AnimationDisplacement=30
 Measure=Plugin
 Plugin=Focus
 
-[Func]
+[Measure_Position_Animation]
 Measure=Script
 ScriptFile=#@#Scripts\Lua\Position.lua
 UpdateDivider=1
@@ -32,8 +32,8 @@ Plugin=ActionTimer
 DynamicVariables=1
 ActionList1=Show | Repeat In,2,#AniSteps#
 ActionList2=Repeat Out,2,#AniSteps# | Hide
-In=[!CommandMeasure Func "TweenAnimation('in')"]
-Out=[!CommandMeasure Func "TweenAnimation('out')"]
+In=[!CommandMeasure Measure_Position_Animation "TweenAnimation('in')"]
+Out=[!CommandMeasure Measure_Position_Animation "TweenAnimation('out')"]
 DefaultUpdateDivider=-1
 
 

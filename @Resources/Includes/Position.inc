@@ -13,7 +13,7 @@ AniDir=Bottom
 AniSteps=18
 AnimationDisplacement=30
 
-[p.Focus]
+[Measure_Focus]
 Measure=Plugin
 Plugin=Focus
 

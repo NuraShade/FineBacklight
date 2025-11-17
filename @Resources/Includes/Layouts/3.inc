@@ -1,5 +1,5 @@
 [Variables]
-Background_Width=360
+Background_Width=500
 Background_Height=220
 Background_Color=20,20,22
 Background_Opacity=255
@@ -26,9 +26,9 @@ NightLight_On_Opacity=255
 NightLight_On_Hover_Opacity=230
 
 ; Brightness Slider
-Slider_Width=280
+Slider_Width=410
 Slider_Height=6
-Slider_X=40
+Slider_X=45
 Slider_Track_Color=60,60,65
 Slider_Fill_Color=255,152,51
 Slider_Thumb_Size=20

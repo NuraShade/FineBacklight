@@ -1,5 +1,5 @@
 [Variables]
-Background_Width=420
+Background_Width=500
 Background_Height=200
 Background_Color=18,18,18
 Background_Opacity=255
@@ -24,9 +24,9 @@ NightLight_On_Opacity=255
 NightLight_On_Hover_Opacity=230
 
 ; Brightness Slider
-Slider_Width=300
+Slider_Width=370
 Slider_Height=4
-Slider_X=60
+Slider_X=70
 Slider_Track_Color=50,50,50
 Slider_Fill_Color=235,0,20
 Slider_Thumb_Size=20
@@ -134,29 +134,17 @@ DynamicVariables=1
 [NightLight_Label]
 Meter=String
 X=(60*#Scale#)
-Y=(138*#Scale#)
+Y=(135*#Scale#)
 Text=Night Light
 FontSize=(18*#Scale#)
 FontWeight=600
 MeterStyle=Text_Style
 DynamicVariables=1
 
-[NightLight_Status_Text]
-Meter=String
-X=((#Background_Width#-110)*#Scale#)
-Y=(142*#Scale#)
-Text=[Measure_NightLight:0="OFF":1="ON"]
-FontSize=(14*#Scale#)
-FontWeight=500
-FontColor=[Measure_NightLight:0="#NightLight_Off_Color#":1="#Accent_Color#"]
-MeterStyle=Text_Style
-StringAlign=Right
-DynamicVariables=1
-
 [NightLight_Toggle]
 Meter=Shape 
 X=((#Background_Width#-80)*#Scale#)
-Y=(138*#Scale#)
+Y=(140*#Scale#)
 Shape=Rectangle 0,0,(48*#Scale#),(26*#Scale#),(13*#Scale#) | StrokeWidth 0 | Extend This
 Shape2=Ellipse (13*#Scale#),(13*#Scale#),(9*#Scale#) | Fill Color 255,255,255 | StrokeWidth 0 | Offset ([Measure_NightLight]*22*#Scale#),0
 MeterStyle=NightLight_Shape_Style_[Measure_NightLight]

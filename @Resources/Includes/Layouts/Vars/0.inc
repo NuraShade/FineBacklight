@@ -18,6 +18,25 @@
 ;============================================================
 
 [Variables]
-Skin_Name=FineBacklight
-Scale=1
-Layout=2
+Background_Width=500
+Background_Height=180
+Background_Color=32, 32, 32
+Background_Opacity=166
+Background_Corner_Round=12
+Font_Color=255, 255, 255
+Font_Face=SF Pro Display
+Font_Weight=300
+; NightLight Shape Colors
+NightLight_Off_Color=200,200,200
+NightLight_Off_Opacity=10
+NightLight_Off_Hover_Opacity=30
+NightLight_On_Color=255,140,0
+NightLight_On_Opacity=40
+NightLight_On_Hover_Opacity=60
+; Brightness Slider
+Slider_Width=330
+Slider_Height=6
+Slider_X=70
+Slider_Track_Color=64,64,64
+Slider_Fill_Color=255,212,71
+Slider_Thumb_Size=20

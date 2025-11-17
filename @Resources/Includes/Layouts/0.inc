@@ -97,14 +97,20 @@ W=(30*#Scale#)
 H=(30*#Scale#)
 DynamicVariables=1
 
-[Brightness_Slider_Combined]
+[Brightness_Slider_Track]
 Meter=Shape
 X=(#Slider_X#*#Scale#)
 Y=(110*#Scale#)
 Shape=Rectangle 0,0,(#Slider_Width#*#Scale#),(#Slider_Height#*#Scale#),(#Slider_Height#/2*#Scale#) | Fill Color #Slider_Track_Color# | StrokeWidth 0
 Shape2=Rectangle 0,0,(Clamp([Slider_Drag_Calc]*[Slider_Size_Calc],0,(#Slider_Width#*#Scale#))),(#Slider_Height#*#Scale#),(#Slider_Height#/2*#Scale#) | Fill Color #Slider_Fill_Color# | StrokeWidth 0
-Shape3=Ellipse (#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#) | Fill Color 255,255,255 | StrokeWidth (1*#Scale#) | Stroke Color 204,204,204 | Offset (Clamp([Slider_Drag_Calc]*[Slider_Size_Calc],0,(#Slider_Width#*#Scale#))),(-(#Slider_Thumb_Size#/2*#Scale#)+(#Slider_Height#/2*#Scale#))
 LeftMouseDownAction=[!CommandMeasure Measure_Backlight "SetBacklight $MouseX:%$"][!Update]
+DynamicVariables=1
+
+[Brightness_Slider_Thumb]
+Meter=Shape
+X=(#Slider_X#*#Scale#)
+Y=(110*#Scale#)
+Shape=Ellipse (#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#) | Fill Color 255,255,255 | StrokeWidth (1*#Scale#) | Stroke Color 204,204,204 | Offset (Clamp([Slider_Drag_Calc]*[Slider_Size_Calc],0,(#Slider_Width#*#Scale#))),(-(#Slider_Thumb_Size#/2*#Scale#)+(#Slider_Height#/2*#Scale#))
 MouseOverAction=[!CommandMeasure Measure_Mouse_Brightness "Start"]
 DynamicVariables=1
 

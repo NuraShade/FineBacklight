@@ -1,4 +1,4 @@
-﻿; ============================================================
+﻿;============================================================
 ;  NuraShade Skin
 ;  Copyright (c) 2025 NuraShade
 ;
@@ -15,7 +15,8 @@
 ;      you must distribute your contributions under the same license as the original.
 ;
 ;  License Details: https://creativecommons.org/licenses/by-sa/3.0/
-; ============================================================
+;============================================================
+
 [Variables]
 Background_Width=500
 Background_Height=180
@@ -25,7 +26,6 @@ Background_Corner_Round=12
 Font_Color=255, 255, 255
 Font_Face=SF Pro Display
 Font_Weight=300
-
 ; NightLight Shape Colors
 NightLight_Off_Color=200,200,200
 NightLight_Off_Opacity=10
@@ -33,7 +33,6 @@ NightLight_Off_Hover_Opacity=30
 NightLight_On_Color=255,140,0
 NightLight_On_Opacity=40
 NightLight_On_Hover_Opacity=60
-
 ; Brightness Slider
 Slider_Width=330
 Slider_Height=6
@@ -41,10 +40,10 @@ Slider_X=70
 Slider_Track_Color=64,64,64
 Slider_Fill_Color=255,212,71
 Slider_Thumb_Size=20
-
 ;=============================================================
 ;           MeterStyles
 ;=============================================================
+
 [NightLight_Shape_Style_0]
 This=FillColor #NightLight_Off_Color#,#NightLight_Off_Opacity#
 LeftMouseUpAction=[!CommandMeasure Measure_NightLight "Enable"][!UpdateMeter *][!Redraw]
@@ -66,9 +65,10 @@ StringAlign=Left
 ;=============================================================
 ;           Content
 ;=============================================================
+
 [Background_Shape]
-Meter=Shape 
-Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity# 
+Meter=Shape
+Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity#
 DynamicVariables=1
 
 [Skin_Name_Title]
@@ -78,10 +78,10 @@ Y=(28*#Scale#)
 Text=#Skin_Name#
 FontSize=(18*#Scale#)
 MeterStyle=Text_Style
-
 ;NightLight Shape Contents
+
 [NightLight_Shape]
-Meter=Shape 
+Meter=Shape
 X=((#Background_Width#*#Scale#)-(150*#Scale#))
 Y=(20*#Scale#)
 Shape=Rectangle 0,0,(130*#Scale#),(40*#Scale#),(20*#Scale#) | StrokeWidth 1 | StrokeColor 200,200,200,100 | Extend This
@@ -107,10 +107,10 @@ MeterStyle=Text_Style
 
 [Brightness_Icon]
 Meter=Image
-ImagePath=#@#Images\Brightness 
+ImagePath=#@#Images\Brightness
 ImageName=3.png
 X=(20*#Scale#)
-Y=(98*#Scale#) 
+Y=(98*#Scale#)
 W=(30*#Scale#)
 H=(30*#Scale#)
 DynamicVariables=1

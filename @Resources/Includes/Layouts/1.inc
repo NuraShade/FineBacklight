@@ -1,4 +1,4 @@
-﻿; ============================================================
+﻿;============================================================
 ;  NuraShade Skin
 ;  Copyright (c) 2025 NuraShade
 ;
@@ -15,7 +15,8 @@
 ;      you must distribute your contributions under the same license as the original.
 ;
 ;  License Details: https://creativecommons.org/licenses/by-sa/3.0/
-; ============================================================
+;============================================================
+
 [Variables]
 Background_Width=500
 Background_Height=240
@@ -25,14 +26,12 @@ Background_Corner_Round=14
 Font_Color=230,230,235
 Font_Face=Google Sans Code
 Font_Weight=500
-
 ; Pixel Material You Colors (Dark Mode)
 Accent_Color=179,157,219
 Accent_Light=208,188,255
 Surface_Color=45,45,50
 Surface_Opacity=255
 Card_Corner_Round=24
-
 ; NightLight Toggle Colors
 NightLight_Off_Color=120,120,130
 NightLight_Off_Opacity=30
@@ -40,7 +39,6 @@ NightLight_Off_Hover_Opacity=50
 NightLight_On_Color=103,80,164
 NightLight_On_Opacity=255
 NightLight_On_Hover_Opacity=230
-
 ; Brightness Slider
 Slider_Width=400
 Slider_Height=8
@@ -48,10 +46,10 @@ Slider_X=50
 Slider_Track_Color=70,70,80
 Slider_Fill_Color=179,157,219
 Slider_Thumb_Size=20
-
 ;=============================================================
 ;           MeterStyles
 ;=============================================================
+
 [NightLight_Shape_Style_0]
 This=FillColor #NightLight_Off_Color#,#NightLight_Off_Opacity#
 LeftMouseUpAction=[!CommandMeasure Measure_NightLight "Enable"][!UpdateMeter *][!Redraw]
@@ -73,16 +71,16 @@ StringAlign=Left
 
 [Card_Style]
 Shape=Rectangle 0,0,(#Background_Width#-40*#Scale#),(90*#Scale#),#Card_Corner_Round# | StrokeWidth 0 | FillColor #Surface_Color#,#Surface_Opacity#
-
 ;=============================================================
 ;           Content
 ;=============================================================
-[Background_Shape]
-Meter=Shape 
-Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity# 
-DynamicVariables=1
 
+[Background_Shape]
+Meter=Shape
+Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity#
+DynamicVariables=1
 ; Brightness Card
+
 [Brightness_Card]
 Meter=Shape
 X=(20*#Scale#)
@@ -92,10 +90,10 @@ DynamicVariables=1
 
 [Brightness_Icon]
 Meter=Image
-ImagePath=#@#Images\Brightness 
+ImagePath=#@#Images\Brightness
 ImageName=3.png
 X=(40*#Scale#)
-Y=(30*#Scale#) 
+Y=(30*#Scale#)
 W=(40*#Scale#)
 H=(40*#Scale#)
 ImageTint=#Accent_Color#
@@ -139,8 +137,8 @@ Y=(85*#Scale#)
 Shape=Ellipse (#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#) | Fill Color #Accent_Color# | StrokeWidth (3*#Scale#) | Stroke Color 255,255,255 | Offset (Clamp([Slider_Drag_Calc]*[Slider_Size_Calc],0,(#Slider_Width#*#Scale#))),(-(#Slider_Thumb_Size#/2*#Scale#)+(#Slider_Height#/2*#Scale#))
 MouseOverAction=[!CommandMeasure Measure_Mouse_Brightness "Start"]
 DynamicVariables=1
-
 ; NightLight Card
+
 [NightLight_Card]
 Meter=Shape
 X=(20*#Scale#)
@@ -152,7 +150,7 @@ DynamicVariables=1
 Meter=Image
 ImageName=#@#Images\NightLight\[Measure_NightLight].png
 X=(40*#Scale#)
-Y=(150*#Scale#) 
+Y=(150*#Scale#)
 W=(40*#Scale#)
 H=(40*#Scale#)
 ImageTint=#Accent_Color#
@@ -169,11 +167,10 @@ MeterStyle=Text_Style
 DynamicVariables=1
 
 [NightLight_Toggle]
-Meter=Shape 
+Meter=Shape
 X=((#Background_Width#-90)*#Scale#)
 Y=(158*#Scale#)
 Shape=Rectangle 0,0,(52*#Scale#),(28*#Scale#),(14*#Scale#) | StrokeWidth 0 | Extend This
 Shape2=Ellipse (14*#Scale#),(14*#Scale#),(10*#Scale#) | Fill Color 255,255,255 | StrokeWidth 0 | Offset ([Measure_NightLight]*24*#Scale#),0
 MeterStyle=NightLight_Shape_Style_[Measure_NightLight]
 DynamicVariables=1
-

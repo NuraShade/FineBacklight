@@ -1,4 +1,4 @@
-﻿; ============================================================
+﻿;============================================================
 ;  NuraShade Skin
 ;  Copyright (c) 2025 NuraShade
 ;
@@ -15,7 +15,8 @@
 ;      you must distribute your contributions under the same license as the original.
 ;
 ;  License Details: https://creativecommons.org/licenses/by-sa/3.0/
-; ============================================================
+;============================================================
+
 [Variables]
 Background_Width=500
 Background_Height=220
@@ -25,7 +26,6 @@ Background_Corner_Round=12
 Font_Color=240,240,245
 Font_Face=Google Sans Code
 Font_Weight=400
-
 ; MIUI Orange Theme (Dark Mode)
 Accent_Color=255,152,51
 Accent_Light=255,180,90
@@ -34,7 +34,6 @@ Surface_Opacity=255
 Card_Corner_Round=16
 Icon_BG_Color=255,152,51
 Icon_BG_Opacity=25
-
 ; NightLight Toggle Colors
 NightLight_Off_Color=80,80,85
 NightLight_Off_Opacity=255
@@ -42,7 +41,6 @@ NightLight_Off_Hover_Opacity=230
 NightLight_On_Color=255,152,51
 NightLight_On_Opacity=255
 NightLight_On_Hover_Opacity=230
-
 ; Brightness Slider
 Slider_Width=410
 Slider_Height=6
@@ -50,10 +48,10 @@ Slider_X=45
 Slider_Track_Color=60,60,65
 Slider_Fill_Color=255,152,51
 Slider_Thumb_Size=20
-
 ;=============================================================
 ;           MeterStyles
 ;=============================================================
+
 [NightLight_Shape_Style_0]
 This=FillColor #NightLight_Off_Color#,#NightLight_Off_Opacity#
 LeftMouseUpAction=[!CommandMeasure Measure_NightLight "Enable"][!UpdateMeter *][!Redraw]
@@ -72,16 +70,16 @@ FontFace=#Font_Face#
 FontWeight=#Font_Weight#
 Antialias=1
 StringAlign=Left
-
 ;=============================================================
 ;           Content
 ;=============================================================
-[Background_Shape]
-Meter=Shape 
-Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity# 
-DynamicVariables=1
 
+[Background_Shape]
+Meter=Shape
+Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity#
+DynamicVariables=1
 ; Brightness Card
+
 [Brightness_Card]
 Meter=Shape
 X=(20*#Scale#)
@@ -98,10 +96,10 @@ DynamicVariables=1
 
 [Brightness_Icon]
 Meter=Image
-ImagePath=#@#Images\Brightness 
+ImagePath=#@#Images\Brightness
 ImageName=3.png
 X=(45*#Scale#)
-Y=(45*#Scale#) 
+Y=(45*#Scale#)
 W=(20*#Scale#)
 H=(20*#Scale#)
 ImageTint=#Accent_Color#
@@ -145,8 +143,8 @@ Y=(90*#Scale#)
 Shape=Ellipse (#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#) | Fill Color #Accent_Color# | StrokeWidth (2*#Scale#) | Stroke Color 255,255,255 | Offset (Clamp([Slider_Drag_Calc]*[Slider_Size_Calc],0,(#Slider_Width#*#Scale#))),(-(#Slider_Thumb_Size#/2*#Scale#)+(#Slider_Height#/2*#Scale#))
 MouseOverAction=[!CommandMeasure Measure_Mouse_Brightness "Start"]
 DynamicVariables=1
-
 ; NightLight Card
+
 [NightLight_Card]
 Meter=Shape
 X=(20*#Scale#)
@@ -165,7 +163,7 @@ DynamicVariables=1
 Meter=Image
 ImageName=#@#Images\NightLight\[Measure_NightLight].png
 X=(45*#Scale#)
-Y=(160*#Scale#) 
+Y=(160*#Scale#)
 W=(20*#Scale#)
 H=(20*#Scale#)
 ImageTint=#Accent_Color#
@@ -182,11 +180,10 @@ MeterStyle=Text_Style
 DynamicVariables=1
 
 [NightLight_Toggle]
-Meter=Shape 
+Meter=Shape
 X=((#Background_Width#-75)*#Scale#)
 Y=(158*#Scale#)
 Shape=Rectangle 0,0,(46*#Scale#),(26*#Scale#),(13*#Scale#) | StrokeWidth 0 | Extend This
 Shape2=Ellipse (13*#Scale#),(13*#Scale#),(10*#Scale#) | Fill Color 255,255,255 | StrokeWidth 0 | Offset ([Measure_NightLight]*20*#Scale#),0
 MeterStyle=NightLight_Shape_Style_[Measure_NightLight]
 DynamicVariables=1
-

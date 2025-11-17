@@ -1,4 +1,4 @@
-﻿; ============================================================
+﻿;============================================================
 ;  NuraShade Skin
 ;  Copyright (c) 2025 NuraShade
 ;
@@ -15,7 +15,8 @@
 ;      you must distribute your contributions under the same license as the original.
 ;
 ;  License Details: https://creativecommons.org/licenses/by-sa/3.0/
-; ============================================================
+;============================================================
+
 [Variables]
 Skin_Name=FineBacklight
 Scale=1

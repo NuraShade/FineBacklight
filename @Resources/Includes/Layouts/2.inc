@@ -1,4 +1,4 @@
-﻿; ============================================================
+﻿;============================================================
 ;  NuraShade Skin
 ;  Copyright (c) 2025 NuraShade
 ;
@@ -15,7 +15,8 @@
 ;      you must distribute your contributions under the same license as the original.
 ;
 ;  License Details: https://creativecommons.org/licenses/by-sa/3.0/
-; ============================================================
+;============================================================
+
 [Variables]
 Background_Width=500
 Background_Height=200
@@ -25,14 +26,12 @@ Background_Corner_Round=16
 Font_Color=255,255,255
 Font_Face=Open Sans
 Font_Weight=400
-
 ; OnePlus Red Theme
 Accent_Color=235,0,20
 Accent_Dim=180,0,15
 Surface_Color=28,28,28
 Surface_Opacity=255
 Divider_Color=50,50,50
-
 ; NightLight Toggle Colors
 NightLight_Off_Color=80,80,80
 NightLight_Off_Opacity=100
@@ -40,7 +39,6 @@ NightLight_Off_Hover_Opacity=150
 NightLight_On_Color=235,0,20
 NightLight_On_Opacity=255
 NightLight_On_Hover_Opacity=230
-
 ; Brightness Slider
 Slider_Width=370
 Slider_Height=4
@@ -48,10 +46,10 @@ Slider_X=70
 Slider_Track_Color=50,50,50
 Slider_Fill_Color=235,0,20
 Slider_Thumb_Size=20
-
 ;=============================================================
 ;           MeterStyles
 ;=============================================================
+
 [NightLight_Shape_Style_0]
 This=FillColor #NightLight_Off_Color#,#NightLight_Off_Opacity#
 LeftMouseUpAction=[!CommandMeasure Measure_NightLight "Enable"][!UpdateMeter *][!Redraw]
@@ -70,22 +68,22 @@ FontFace=#Font_Face#
 FontWeight=#Font_Weight#
 Antialias=1
 StringAlign=Left
-
 ;=============================================================
 ;           Content
 ;=============================================================
-[Background_Shape]
-Meter=Shape 
-Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity# 
-DynamicVariables=1
 
+[Background_Shape]
+Meter=Shape
+Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity#
+DynamicVariables=1
 ; Brightness Section
+
 [Brightness_Icon]
 Meter=Image
-ImagePath=#@#Images\Brightness 
+ImagePath=#@#Images\Brightness
 ImageName=3.png
 X=(30*#Scale#)
-Y=(30*#Scale#) 
+Y=(30*#Scale#)
 W=(24*#Scale#)
 H=(24*#Scale#)
 ImageTint=#Font_Color#
@@ -129,21 +127,21 @@ Y=(80*#Scale#)
 Shape=Ellipse (#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#),(#Slider_Thumb_Size#/2*#Scale#) | Fill Color #Accent_Color# | StrokeWidth 0 | Offset (Clamp([Slider_Drag_Calc]*[Slider_Size_Calc],0,(#Slider_Width#*#Scale#))),(-(#Slider_Thumb_Size#/2*#Scale#)+(#Slider_Height#/2*#Scale#))
 MouseOverAction=[!CommandMeasure Measure_Mouse_Brightness "Start"]
 DynamicVariables=1
-
 ; Divider Line
+
 [Divider_Line]
 Meter=Shape
 X=(30*#Scale#)
 Y=(110*#Scale#)
 Shape=Rectangle 0,0,((#Background_Width#-60)*#Scale#),(1*#Scale#),0 | Fill Color #Divider_Color# | StrokeWidth 0
 DynamicVariables=1
-
 ; NightLight Section
+
 [NightLight_Icon]
 Meter=Image
 ImageName=#@#Images\NightLight\[Measure_NightLight].png
 X=(30*#Scale#)
-Y=(140*#Scale#) 
+Y=(140*#Scale#)
 W=(24*#Scale#)
 H=(24*#Scale#)
 ImageTint=#Font_Color#
@@ -160,11 +158,10 @@ MeterStyle=Text_Style
 DynamicVariables=1
 
 [NightLight_Toggle]
-Meter=Shape 
+Meter=Shape
 X=((#Background_Width#-80)*#Scale#)
 Y=(140*#Scale#)
 Shape=Rectangle 0,0,(48*#Scale#),(26*#Scale#),(13*#Scale#) | StrokeWidth 0 | Extend This
 Shape2=Ellipse (13*#Scale#),(13*#Scale#),(9*#Scale#) | Fill Color 255,255,255 | StrokeWidth 0 | Offset ([Measure_NightLight]*22*#Scale#),0
 MeterStyle=NightLight_Shape_Style_[Measure_NightLight]
 DynamicVariables=1
-

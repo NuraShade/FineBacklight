@@ -1,4 +1,4 @@
-﻿; ============================================================
+﻿;============================================================
 ;  NuraShade Skin
 ;  Copyright (c) 2025 NuraShade
 ;
@@ -15,7 +15,8 @@
 ;      you must distribute your contributions under the same license as the original.
 ;
 ;  License Details: https://creativecommons.org/licenses/by-sa/3.0/
-; ============================================================
+;============================================================
+
 [Variables]
 Background_Width=500
 Background_Height=200
@@ -25,7 +26,6 @@ Background_Corner_Round=12
 Font_Color=30,30,30
 Font_Face=SF Pro Display
 Font_Weight=400
-
 ; macOS Big Sur Blue Theme
 Accent_Color=0,122,255
 Accent_Light=52,152,255
@@ -34,7 +34,6 @@ Surface_Opacity=180
 Card_Corner_Round=18
 Icon_BG_Color=0,122,255
 Icon_BG_Opacity=15
-
 ; NightLight Toggle Colors
 NightLight_Off_Color=142,142,147
 NightLight_Off_Opacity=255
@@ -42,7 +41,6 @@ NightLight_Off_Hover_Opacity=230
 NightLight_On_Color=0,122,255
 NightLight_On_Opacity=255
 NightLight_On_Hover_Opacity=230
-
 ; Brightness Slider
 Slider_Width=400
 Slider_Height=8
@@ -50,10 +48,10 @@ Slider_X=50
 Slider_Track_Color=209,209,214
 Slider_Fill_Color=0,122,255
 Slider_Thumb_Size=0
-
 ;=============================================================
 ;           MeterStyles
 ;=============================================================
+
 [NightLight_Shape_Style_0]
 This=FillColor #NightLight_Off_Color#,#NightLight_Off_Opacity#
 LeftMouseUpAction=[!CommandMeasure Measure_NightLight "Enable"][!UpdateMeter *][!Redraw]
@@ -72,16 +70,16 @@ FontFace=#Font_Face#
 FontWeight=#Font_Weight#
 Antialias=1
 StringAlign=Left
-
 ;=============================================================
 ;           Content
 ;=============================================================
-[Background_Shape]
-Meter=Shape 
-Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity# 
-DynamicVariables=1
 
+[Background_Shape]
+Meter=Shape
+Shape=Rectangle 0,0,(#Background_Width#*#Scale#),(#Background_Height#*#Scale#),#Background_Corner_Round# | StrokeWidth 0 | FillColor #Background_Color#,#Background_Opacity#
+DynamicVariables=1
 ; Brightness Card
+
 [Brightness_Card]
 Meter=Shape
 X=(15*#Scale#)
@@ -98,10 +96,10 @@ DynamicVariables=1
 
 [Brightness_Icon]
 Meter=Image
-ImagePath=#@#Images\Brightness 
+ImagePath=#@#Images\Brightness
 ImageName=3.png
 X=(39*#Scale#)
-Y=(39*#Scale#) 
+Y=(39*#Scale#)
 W=(18*#Scale#)
 H=(18*#Scale#)
 ImageTint=#Accent_Color#
@@ -138,8 +136,8 @@ Shape2=Rectangle 0,0,(Clamp([Slider_Drag_Calc]/100*(#Slider_Width#*#Scale#),0,(#
 LeftMouseDownAction=[!CommandMeasure Measure_Backlight "SetBacklight $MouseX:%$"][!Update]
 MouseOverAction=[!CommandMeasure Measure_Mouse_Brightness "Start"]
 DynamicVariables=1
-
 ; NightLight Card
+
 [NightLight_Card]
 Meter=Shape
 X=(15*#Scale#)
@@ -158,7 +156,7 @@ DynamicVariables=1
 Meter=Image
 ImageName=#@#Images\NightLight\[Measure_NightLight].png
 X=(39*#Scale#)
-Y=(144*#Scale#) 
+Y=(144*#Scale#)
 W=(18*#Scale#)
 H=(18*#Scale#)
 ImageTint=#Accent_Color#
@@ -175,11 +173,10 @@ MeterStyle=Text_Style
 DynamicVariables=1
 
 [NightLight_Toggle]
-Meter=Shape 
+Meter=Shape
 X=((#Background_Width#-70)*#Scale#)
 Y=(142*#Scale#)
 Shape=Rectangle 0,0,(44*#Scale#),(24*#Scale#),(12*#Scale#) | StrokeWidth 0 | Extend This
 Shape2=Ellipse (12*#Scale#),(12*#Scale#),(9*#Scale#) | Fill Color 255,255,255 | StrokeWidth 0 | Offset ([Measure_NightLight]*20*#Scale#),0
 MeterStyle=NightLight_Shape_Style_[Measure_NightLight]
 DynamicVariables=1
-

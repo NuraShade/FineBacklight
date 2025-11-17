@@ -23,7 +23,7 @@ Background_Color=18,18,18
 Background_Opacity=255
 Background_Corner_Round=16
 Font_Color=255,255,255
-Font_Face=OnePlus Sans
+Font_Face=Open Sans
 Font_Weight=400
 
 ; OnePlus Red Theme

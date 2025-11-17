@@ -23,7 +23,7 @@ Background_Color=20,20,22
 Background_Opacity=255
 Background_Corner_Round=12
 Font_Color=240,240,245
-Font_Face=MiSans
+Font_Face=Google Sans Code
 Font_Weight=400
 
 ; MIUI Orange Theme (Dark Mode)

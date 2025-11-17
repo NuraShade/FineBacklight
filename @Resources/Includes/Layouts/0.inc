@@ -23,8 +23,8 @@ Background_Color=32, 32, 32
 Background_Opacity=166
 Background_Corner_Round=12
 Font_Color=255, 255, 255
-Font_Face=Segoe UI
-Font_Weight=100
+Font_Face=SF Pro Display
+Font_Weight=300
 
 ; NightLight Shape Colors
 NightLight_Off_Color=200,200,200
@@ -59,7 +59,7 @@ MouseLeaveAction=[!SetOption #CURRENTSECTION# This "FillColor #NightLight_On_Col
 
 [Text_Style]
 FontColor=#Font_Color#
-FontFace=Segoe UI 
+FontFace=#Font_Face#
 FontWeight=#Font_Weight#
 Antialias=1
 StringAlign=Left
@@ -74,7 +74,7 @@ DynamicVariables=1
 [Skin_Name_Title]
 Meter=String
 X=(20*#Scale#)
-Y=(20*#Scale#)
+Y=(28*#Scale#)
 Text=#Skin_Name#
 FontSize=(18*#Scale#)
 MeterStyle=Text_Style
@@ -110,7 +110,7 @@ Meter=Image
 ImagePath=#@#Images\Brightness 
 ImageName=3.png
 X=(20*#Scale#)
-Y=(100*#Scale#) 
+Y=(98*#Scale#) 
 W=(30*#Scale#)
 H=(30*#Scale#)
 DynamicVariables=1
@@ -135,7 +135,7 @@ DynamicVariables=1
 [Brightness_Value_Text]
 Meter=String
 X=((#Slider_X#+#Slider_Width#+70)*#Scale#)
-Y=(98*#Scale#)
+Y=(100*#Scale#)
 Text=[Measure_Backlight]%
 FontSize=(14*#Scale#)
 MeterStyle=Text_Style

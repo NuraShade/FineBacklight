@@ -23,8 +23,8 @@ Background_Color=25,25,28
 Background_Opacity=255
 Background_Corner_Round=14
 Font_Color=230,230,235
-Font_Face=Google Sans
-Font_Weight=400
+Font_Face=Google Sans Code
+Font_Weight=500
 
 ; Pixel Material You Colors (Dark Mode)
 Accent_Color=179,157,219

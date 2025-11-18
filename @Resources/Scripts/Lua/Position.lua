@@ -80,6 +80,14 @@ function Initialize()
 end
 
 function tweenAnimation(direction)
+    local use_as_widget = tonumber(SKIN:GetVariable('Use_As_Widget')) or 0
+     if use_as_widget ~= 0 then
+        return
+    end
+    if not Tween or not Tween_Subject then
+        return
+    end
+    
     Tween:update(direction == 'in' and 1 or -1)
     
     local tween_node = Tween_Subject.TweenNode

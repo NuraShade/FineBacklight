@@ -53,6 +53,7 @@ Hide=[!Hide]
 In=[!CommandMeasure Measure_Position_Animation "tweenAnimation('in')"]
 Out=[!CommandMeasure Measure_Position_Animation "tweenAnimation('out')"]
 UpdateDivider=-1
+Disabled=#Use_As_Widget#
 
 [Measure_Visibility_Toggle]
 Measure=Calc

@@ -1,110 +1,102 @@
--- ============================================================
---  NuraShade Lua Script
---  Copyright (c) 2025 NuraShade
---
---  Licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.
---  You are free to:
---    • Share — copy and redistribute the material in any medium or format
---    • Adapt — remix, transform, and build upon the material
---      for any purpose, even commercially.
---
---  Under the following terms:
---    • Attribution — You must give appropriate credit, provide a link to the license,
---      and indicate if changes were made.
---    • ShareAlike — If you remix, transform, or build upon the material,
---      you must distribute your contributions under the same license as the original.
---
---  License Details: https://creativecommons.org/licenses/by-sa/3.0/
--- ============================================================
-local move_x, move_y, anchor_x, anchor_y
-local animation_steps, animation_displacement, animation_direction
-local subject, t
-
-local position_x_config = {
-    L = function(sax, saw, pad) return sax + pad, 0, "0%" end,
-    C = function(sax, saw, pad) return sax + saw / 2, 0.5, "50%" end,
-    R = function(sax, saw, pad) return sax + saw - pad, 1, "100%" end
-}
-
-local position_y_config = {
-    T = function(say, sah, pad) return say + pad, 0, "0%" end,
-    C = function(say, sah, pad) return say + sah / 2, 0.5, "50%" end,
-    B = function(say, sah, pad) return say + sah - pad, 1, "100%" end
-}
-
-local animation_offsets = {
-    Left = function(progress, displacement) return (progress - 1) * displacement, 0 end,
-    Right = function(progress, displacement) return (1 - progress) * displacement, 0 end,
-    Top = function(progress, displacement) return 0, (progress - 1) * displacement end,
-    Bottom = function(progress, displacement) return 0, (1 - progress) * displacement end
-}
+local MoveX = 0
+local MoveY = 0
+local AnchorX = 0
+local AnchorY = 0
+local Animation_Steps
+local Animation_Displacement
+local Animation_Direction
+local Tween
+local Tween_Subject
 
 function Initialize()
-    if SKIN:GetVariable('Use_As_Widget') == '0' then
-        SKIN:Bang('[!Delay 100][!CommandMeasure Measure_Position_Animation_Timer "Execute 1"][!CommandMeasure Measure_Focus "#CURRENTCONFIG#"][!Draggable 0][!ZPos 1][!Log "Animating"]')
+    local position = SKIN:GetVariable('Position')
+    
+    if position == 'MousePosition' then
+        MoveX, MoveY = 0, 0
+        AnchorX, AnchorY = '50%', '50%'
+    elseif position ~= 'Custom' then
+        local position_x = position:sub(2, 2)
+        local position_y = position:sub(1, 1)
         
-        -- Get position configuration
-        local pos = SKIN:GetVariable('Position')
-        local pos_x, pos_y = pos:sub(2, 2), pos:sub(1, 1)
-        
-        -- Get monitor dimensions
+        local x_padding = tonumber(SKIN:GetVariable('X_Padding')) or 0
+        local y_padding = tonumber(SKIN:GetVariable('Y_Padding')) or 0
         local monitor_index = SKIN:GetVariable('Monitor_Index')
-        local sax = tonumber(SKIN:GetVariable('WORKAREAX@' .. monitor_index))
-        local say = tonumber(SKIN:GetVariable('WORKAREAY@' .. monitor_index))
-        local saw = tonumber(SKIN:GetVariable('WORKAREAWIDTH@' .. monitor_index))
-        local sah = tonumber(SKIN:GetVariable('WORKAREAHEIGHT@' .. monitor_index))
+        local preserve_taskbar = tonumber(SKIN:GetVariable('Preserve_Taskbar_Space')) or 0
         
-        -- Get padding
-        local x_padding = tonumber(SKIN:GetVariable('X_Padding'))
-        local y_padding = tonumber(SKIN:GetVariable('Y_Padding'))
+        local screen_area_x = tonumber(SKIN:GetVariable('SCREENAREAX@' .. monitor_index)) or 0
+        local screen_area_y = tonumber(SKIN:GetVariable('SCREENAREAY@' .. monitor_index)) or 0
+        local screen_area_width = tonumber(SKIN:GetVariable('SCREENAREAWIDTH@' .. monitor_index)) or 0
+        local screen_area_height = tonumber(SKIN:GetVariable('SCREENAREAHEIGHT@' .. monitor_index)) or 0
+        local work_area_width = tonumber(SKIN:GetVariable('WORKAREAWIDTH@' .. monitor_index)) or 0
+        local work_area_height = tonumber(SKIN:GetVariable('WORKAREAHEIGHT@' .. monitor_index)) or 0
         
-        -- Calculate position using lookup tables
-        local anchor_x_decimal, anchor_y_decimal
-        move_x, anchor_x_decimal, anchor_x = position_x_config[pos_x](sax, saw, x_padding)
-        move_y, anchor_y_decimal, anchor_y = position_y_config[pos_y](say, sah, y_padding)
+        local x_difference = screen_area_width - work_area_width
+        local y_difference = screen_area_height - work_area_height
         
-        SKIN:Bang('!Draggable 0')
-        SKIN:Bang('!SetWindowPosition ' .. move_x .. ' ' .. move_y .. ' ' .. anchor_x .. ' ' .. anchor_y)
+        MoveX, MoveY = 0, 0
+        AnchorX, AnchorY = 0, 0
         
-        -- Handle animation
-        if tonumber(SKIN:GetVariable('Animated')) == 1 then
-            animation_steps = tonumber(SKIN:GetVariable('Animation_Steps'))
-            animation_displacement = tonumber(SKIN:GetVariable('Animation_Displacement'))
-            animation_direction = SKIN:GetVariable('Animation_Direction')
-            
-            dofile(SELF:GetOption("ScriptFile"):match("(.*[/\\])") .. "tween.lua")
-            subject = { tween_node = 0 }
-            t = tween.new(animation_steps, subject, {tween_node = 100}, SKIN:GetVariable('Ease_Type'))
-        else
-            SKIN:Bang('[!SetTransparency 255]')
+        if position_x == 'L' then
+            MoveX = screen_area_x + x_padding + preserve_taskbar * x_difference
+        elseif position_x == 'C' then
+            MoveX = screen_area_x + screen_area_width * 0.5
+            AnchorX = "50%"
+        elseif position_x == 'R' then
+            MoveX = screen_area_x + screen_area_width - x_padding - preserve_taskbar * x_difference
+            AnchorX = "100%"
         end
-    else
-        SKIN:Bang('[!Show][!SetTransparency 255][!Draggable 1][!ZPos 0][!SetAnchor 0 0]')
+        
+        if position_y == 'T' then
+            MoveY = screen_area_y + y_padding + preserve_taskbar * y_difference
+        elseif position_y == 'C' then
+            MoveY = screen_area_y + screen_area_height * 0.5
+            AnchorY = "50%"
+        elseif position_y == 'B' then
+            MoveY = screen_area_y + screen_area_height - y_padding - preserve_taskbar * y_difference
+            AnchorY = "100%"
+        end
+        
+        SKIN:Bang('!SetWindowPosition', MoveX, MoveY, AnchorX, AnchorY)
+    end
+    
+    if tonumber(SKIN:GetVariable('Animated')) == 1 then
+        Animation_Steps = tonumber(SKIN:GetVariable('Animation_Steps')) or 18
+        Animation_Displacement = tonumber(SKIN:GetVariable('Animation_Displacement')) or 30
+        Animation_Direction = SKIN:GetVariable('Animation_Direction')
+        
+        dofile(SELF:GetOption("ScriptFile"):match("(.*[/\\])") .. "tween.lua")
+        
+        Tween_Subject = { TweenNode = 0 }
+        Tween = tween.new(Animation_Steps, Tween_Subject, { TweenNode = 100 }, SKIN:GetVariable('Ease_Type'))
     end
 end
 
-function OnUnFocus()
-    if SKIN:GetVariable('Use_As_Widget') == '0' then
-        SKIN:Bang('[!CommandMeasure Measure_Position_Animation_Timer "Stop 1"][!CommandMeasure Measure_Position_Animation_Timer "Execute 2"][!Delay 200][!DeactivateConfig]')
+function tweenAnimation(direction)
+    Tween:update(direction == 'in' and 1 or -1)
+    
+    local tween_node = Tween_Subject.TweenNode
+    if tween_node > 100 then
+        tween_node = 100
+    elseif tween_node < 0 then
+        tween_node = 0
     end
-end
-
-function TweenAnimation(dir)
-    t:update(dir == 'in' and 1 or -1)
     
-    -- Clamp tween node value
-    local tween_value = subject.tween_node
-    tween_value = tween_value > 100 and 100 or (tween_value < 0 and 0 or tween_value)
+    local transparency = tween_node * 2.55
     
-    -- Calculate animation offset
-    local progress = tween_value / 100
-    local offset_x, offset_y = animation_offsets[animation_direction](progress, animation_displacement)
+    local offset_x, offset_y = 0, 0
+    local progress = tween_node * 0.01
     
-    -- Build and execute bang command
-    local bang = string.format(
-        '[!SetWindowPosition %s %s %s %s][!SetTransparency %d]',
-        move_x + offset_x, move_y + offset_y, anchor_x, anchor_y, progress * 255
-    )
+    if Animation_Direction == 'Left' then
+        offset_x = (progress - 1) * Animation_Displacement
+    elseif Animation_Direction == 'Right' then
+        offset_x = (1 - progress) * Animation_Displacement
+    elseif Animation_Direction == 'Top' then
+        offset_y = (progress - 1) * Animation_Displacement
+    elseif Animation_Direction == 'Bottom' then
+        offset_y = (1 - progress) * Animation_Displacement
+    end
     
-    SKIN:Bang(bang)
+    SKIN:Bang('!SetTransparency', transparency)
+    SKIN:Bang('!SetWindowPosition', MoveX + offset_x, MoveY + offset_y, AnchorX, AnchorY)
+    SKIN:Bang('!UpdateMeasure', 'ActionTimer')
 end

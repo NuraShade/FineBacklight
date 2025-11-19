@@ -23,3 +23,7 @@ Scale=1
 Layout=3
 Icon_Style=0
 Volume_Change_Level=2
+Activate_Via_Key=1
+Activation_Key=CTRL ALT B
+Show_Tray_Icon=1
+Use_Tray_Icon_Scroll=1

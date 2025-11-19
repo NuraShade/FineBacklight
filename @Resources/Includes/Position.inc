@@ -17,7 +17,7 @@
 ;  License Details: https://creativecommons.org/licenses/by-sa/3.0/
 ;============================================================
 [Variables]
-Use_As_Widget=1
+Use_As_Widget=0
 ;Position
 Position=BR
 Monitor_Index=1

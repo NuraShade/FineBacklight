@@ -21,3 +21,5 @@
 Skin_Name=FineBacklight
 Scale=1
 Layout=3
+Icon_Style=0
+Volume_Change_Level=2

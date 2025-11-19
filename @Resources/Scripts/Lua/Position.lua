@@ -61,10 +61,8 @@ function Initialize()
         SKIN:Bang('[!Delay 100][!Show][!SetTransparency 255][!Draggable 1][!ZPos 0]')
         return
     end
-    print('animating')
-    
+    SKIN:Bang('[!Draggable 0][!ZPos 1][!Delay 100][!EnableMeasureGroup Toggle_Actions]')
     calculatePosition(position)
-    SKIN:Bang('[!Draggable 0][!ZPos 1]')
     SKIN:Bang('!SetWindowPosition', MoveX, MoveY, AnchorX, AnchorY)
     
     if tonumber(SKIN:GetVariable('Animated')) == 1 then
@@ -115,4 +113,12 @@ function tweenAnimation(direction)
     SKIN:Bang('!SetTransparency', transparency)
     SKIN:Bang('!SetWindowPosition', MoveX + offset_x, MoveY + offset_y, AnchorX, AnchorY)
     SKIN:Bang('!UpdateMeasure', 'Measure_Position_Animation_Timer')
+end
+
+function OnUnFocus()
+    local use_as_widget = tonumber(SKIN:GetVariable('Use_As_Widget'))
+    if use_as_widget ~= 1 then
+        SKIN:Bang('[!UpdateMeasure Measure_Visibility_Toggle]')
+        return
+    end
 end
